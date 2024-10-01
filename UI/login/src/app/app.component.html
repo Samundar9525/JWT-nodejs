@@ -1,1 +1,15 @@
-<app-navbar></app-navbar>
+<ng-container *ngIf="!isLogged">
+  <div class="container">
+    <div class="top"></div>
+    <div class="bottom"></div>
+    <div class="center">
+      <h2>Please Sign In</h2>
+      <input type="email" [(ngModel)]="email" placeholder="e-mail" />
+      <input type="password" [(ngModel)]="password" placeholder="Password" />
+      <button mat-raised-button color="primary" style="width:340px" (click)="onLogin()">Login</button>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="isLogged">
+  <app-dashboard></app-dashboard>
+</ng-container>

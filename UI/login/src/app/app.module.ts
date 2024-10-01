@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './authentication/login/login.component';
@@ -17,6 +16,8 @@ import { NavbarComponent } from './widget/navbar/navbar.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { ManagerComponent } from './pages/manager/manager.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     NavbarComponent,
     EmployeeComponent,
     ManagerComponent,
-    AdminComponent
+    AdminComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +40,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     MatFormFieldModule,
     MatIconModule,
     ReactiveFormsModule,
-    MatDialogModule
-
+    MatDialogModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
