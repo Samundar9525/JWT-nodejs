@@ -13,6 +13,8 @@ export class AppComponent {
   email: string = '';
   password: string = '';
   isLogged: boolean = false;
+  banner = false;
+
 
   constructor(private router: Router,private service: AuthService){
   }
@@ -27,6 +29,7 @@ export class AppComponent {
   }
 
   onLogin() {
+    this.banner = true
     const data = {
       email:this.email,
       password:this.password

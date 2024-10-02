@@ -3,10 +3,13 @@
     <div class="top"></div>
     <div class="bottom"></div>
     <div class="center">
-      <h2>Please Sign In</h2>
+      <ng-container *ngIf="!banner">
+        <h2>Please Sign In</h2>
       <input type="email" [(ngModel)]="email" placeholder="e-mail" />
       <input type="password" [(ngModel)]="password" placeholder="Password" />
       <button mat-raised-button color="primary" style="width:340px" (click)="onLogin()">Login</button>
+      </ng-container>
+      <ng-container *ngIf="banner"><h2>Please wait... we are fetching record from Database</h2></ng-container>
     </div>
   </div>
 </ng-container>

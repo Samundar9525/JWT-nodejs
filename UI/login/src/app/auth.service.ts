@@ -29,7 +29,7 @@ export class AuthService {
           verticalPosition: 'top',
           panelClass: ['snackbar-error'],
         });
-
+        window.location.reload();
         return throwError(() => new Error(errorMessage));
       })
     );
