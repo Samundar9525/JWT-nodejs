@@ -18,6 +18,9 @@ import { ManagerComponent } from './pages/manager/manager.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule,HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -41,9 +44,16 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     ReactiveFormsModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    MatSnackBarModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService, // Use your interceptor class
+      multi: true, // This is important to allow multiple interceptors if needed
+    },
+  ],  bootstrap: [AppComponent]
 })
 export class AppModule { }

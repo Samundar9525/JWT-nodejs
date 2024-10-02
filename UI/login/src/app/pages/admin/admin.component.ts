@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
+  comment:any ='Unauthorised'
 
+  constructor(private service:AuthService){
+    this.service.checkAuthDashboard('admin').subscribe(res=>{
+      console.log(res)
+      if(res.message){
+        this.comment = res.message;
+      }
+    })
+  }
 }

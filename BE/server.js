@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const dbInstance = require('./usercontroller')
 const PORT = process.env.PORT || 3000;
 const tokenHandler = require('./tokenhandler');
-// Middleware
-app.use(express.json()); // To parse JSON bodies
-
-// Routes
+app.use(express.json());
+app.use(cors());
+// --------------------------------------------------------Routes-------------------------------------------------
 app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
@@ -48,7 +48,7 @@ app.get('/allUser',async (req,res)=>{
 // Function for admin access
 const adminPage = (req, res) => {
     if (req.user.role === 'Admin') {
-        res.json({ message: `Hi ${req.user.email}, you are an admin, hence accessing this page.` });
+        res.json({ message: `Hi ${req.user.email}, you are ${req.user.role}, hence accessing this page.` });
     } else {
         res.status(403).json({ message: 'Access denied. Only admins can access this page.' });
     }
@@ -56,8 +56,8 @@ const adminPage = (req, res) => {
 
 // Function for manager access
 const managerPage = (req, res) => {
-    if (req.user.role === 'Manager') {
-        res.json({ message: `Hi ${req.user.email}, you are a manager, hence accessing this page.` });
+    if (req.user.role === 'Manager' || req.user.role === 'Admin' ) {
+        res.json({ message: `Hi ${req.user.email}, you are ${req.user.role}, hence accessing this page.` });
     } else {
         res.status(403).json({ message: 'Access denied. Only managers can access this page.' });
     }
@@ -65,8 +65,8 @@ const managerPage = (req, res) => {
 
 // Function for employee access
 const employeePage = (req, res) => {
-    if (req.user.role === 'Employee') {
-        res.json({ message: `Hi ${req.user.email}, you are an employee, hence accessing this page.` });
+    if (req.user.role === 'Employee' || req.user.role === 'Admin' ) {
+        res.json({ message: `Hi ${req.user.email}, you are ${req.user.role}, hence accessing this page.` });
     } else {
         res.status(403).json({ message: 'Access denied. Only employees can access this page.' });
     }

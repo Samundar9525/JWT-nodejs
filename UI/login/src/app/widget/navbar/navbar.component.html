@@ -1,6 +1,10 @@
 <div class="nav-container">
   <h3 class="text">WELCOME TO JWT TOKEN DEMO</h3>
   <div>
-    <mat-icon>user</mat-icon>
+    <div class="button-container">
+      <div class="pd-l-10"><button mat-raised-button class="custom-button" (click)="dashboardHandler('Admin')">Admin</button>   </div>
+      <div class="pd-l-10"><button mat-raised-button class="custom-button" (click)="dashboardHandler('Manager')">Manager</button>  </div>
+      <div class="pd-l-10"><button mat-raised-button class="custom-button" (click)="dashboardHandler('Employee')">Employee</button>     </div>
+    </div>
   </div>
 </div>

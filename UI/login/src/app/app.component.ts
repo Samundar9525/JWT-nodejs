@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,23 +14,30 @@ export class AppComponent {
   password: string = '';
   isLogged: boolean = false;
 
-  constructor(private router: Router){
-    this.redirectToPage();
+  constructor(private router: Router,private service: AuthService){
   }
-  redirectToPage(){
-    if (this.userRole === 'admin'){
+  redirectToPage(userRole:any){
+    if (userRole === 'admin'){
       this.router.navigate(['admin'])
-    }else if(this.userRole === 'employee'){
+    }else if(userRole === 'employee'){
       this.router.navigate(['employee'])
-    }else if(this.userRole === 'manager'){
+    }else if(userRole === 'manager'){
       this.router.navigate(['manager'])
     }
   }
 
   onLogin() {
-    // Handle login logic here
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-    // You can now make an API call to verify login credentials
+    const data = {
+      email:this.email,
+      password:this.password
+    }
+    this.service.authenticateUser(data).subscribe(res=>{
+      if(res){
+        console.log(res)
+        this.isLogged = true;
+        localStorage.setItem('authToken', res.token);
+        this.redirectToPage(res?.user.role.toLowerCase())
+      }
+    })
   }
 }
