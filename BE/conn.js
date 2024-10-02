@@ -2,11 +2,11 @@ const { Pool } = require('pg');
 
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'usertoken',
-    password: 'admin',
-    port: 5432,  // Default PostgreSQL port
+    user: 'postgres.mqoirimlirszfdyektvu',
+    host: 'aws-0-ap-southeast-1.pooler.supabase.com',
+    database: 'postgres',
+    password: 'Sam!@#Nevada123',
+    port: 6543,  // Default PostgreSQL port
   });
 
 
