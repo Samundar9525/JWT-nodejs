@@ -7,13 +7,15 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent {
-  comment:any ='Unauthorised'
+  comment:any ='Loading.....'
 
   constructor(private service:AuthService){
     this.service.checkAuthDashboard('employee').subscribe(res=>{
       console.log(res)
       if(res.message){
         this.comment = res.message;
+      }else{
+        this.comment = 'Unauthorised'
       }
     })
   }

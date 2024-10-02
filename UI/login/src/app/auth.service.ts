@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AuthService {
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
-  api = 'http://localhost:3000'
+  api = 'https://jwt-nodejs.onrender.com'
 
   public authenticateUser(data:any){
     return this.http.post<any>(this.api+'/login',data).pipe(
